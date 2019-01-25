@@ -3,6 +3,8 @@
 from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
+from trytond.i18n import gettext
+from trytond.exceptions import UserError
 
 __all__ = ['Party', 'PartyCategory']
 
@@ -17,19 +19,8 @@ Add to categories the following:
 """
 
 
-class Party:
-    __metaclass__ = PoolMeta
+class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
-
-    @classmethod
-    def __setup__(cls):
-        super(Party, cls).__setup__()
-        cls._error_messages.update({
-                'missing_categories': ('The party "%s" is missing some '
-                    'required categories: %s'),
-                'repeated_unique': ('The party "%s" has repeated '
-                    'categories marked as unique'),
-                })
 
     @classmethod
     def validate(cls, vlist):
@@ -65,8 +56,9 @@ class Party:
                 exisits = cls.check_if_exisit(childs_required, categories_ids)
                 if not exisits:
                     cat_required = [c.name for c in required_categories]
-                    cls.raise_user_error('missing_categories', (party.rec_name,
-                        ', '.join(cat_required[:3])))
+                    raise UserError(gettext('party_categories.missing_categories',
+                        party=party.rec_name,
+                        categories=', '.join(cat_required[:3])))
 
             if unique_categories_ids:
                 childs = Category.search([
@@ -79,6 +71,8 @@ class Party:
 
                 if len(parents) != len(set(parents)):
                     cls.raise_user_error('repeated_unique', party.rec_name)
+                    raise UserError(gettext('party_categories.repeated_unique',
+                        party=party.rec_name))
 
     @staticmethod
     def check_if_exisit(list1, list2):
@@ -89,8 +83,7 @@ class Party:
         return list1 == []
 
 
-class PartyCategory:
-    __metaclass__ = PoolMeta
+class PartyCategory(metaclass=PoolMeta):
     __name__ = 'party.category'
     kind = fields.Selection([
         ('other', 'Other'),
