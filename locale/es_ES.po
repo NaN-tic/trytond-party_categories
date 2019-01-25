@@ -1,0 +1,31 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:party.party:"
+msgid "The party \"%s\" has repeated categories marked as unique"
+msgstr "El tercero \"%s\" tiene categorias repetidas marcadas como únicas."
+
+msgctxt "error:party.party:"
+msgid "The party \"%s\" is missing some required categories: %s"
+msgstr "El tercero \"%s\" le faltan categorías requeridas: %s"
+
+msgctxt "field:party.category,kind:"
+msgid "Kind"
+msgstr "Tipo"
+
+msgctxt "field:party.category,required:"
+msgid "Required"
+msgstr "Requerido"
+
+msgctxt "field:party.category,unique:"
+msgid "Unique"
+msgstr "Única"
+
+msgctxt "selection:party.category,kind:"
+msgid "Other"
+msgstr "Otros"
+
+msgctxt "selection:party.category,kind:"
+msgid "View"
+msgstr "Vista"
