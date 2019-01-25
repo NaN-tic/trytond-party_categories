@@ -2,22 +2,12 @@
 # copyright notices and license terms.
 import unittest
 import trytond.tests.test_tryton
-from trytond.tests.test_tryton import test_view, test_depends
+from trytond.tests.test_tryton import ModuleTestCase
 
 
-class TestPartyCategoriesCase(unittest.TestCase):
+class TestPartyCategoriesCase(ModuleTestCase):
     'Test Party Categories module'
-
-    def setUp(self):
-        trytond.tests.test_tryton.install_module('party_categories')
-
-    def test0005views(self):
-        'Test views'
-        test_view('party_categories')
-
-    def test0006depends(self):
-        'Test depends'
-        test_depends()
+    module = 'party_categories'
 
 
 def suite():
