@@ -70,7 +70,6 @@ class Party(metaclass=PoolMeta):
                 parents = [u.parent.id for u in unique_values]
 
                 if len(parents) != len(set(parents)):
-                    cls.raise_user_error('repeated_unique', party.rec_name)
                     raise UserError(gettext('party_categories.repeated_unique',
                         party=party.rec_name))
 
