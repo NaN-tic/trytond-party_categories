@@ -5,6 +5,7 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.i18n import gettext
 from trytond.exceptions import UserError
+from trytond.transaction import Transaction
 
 __all__ = ['Party', 'PartyCategory']
 
@@ -30,6 +31,9 @@ class Party(metaclass=PoolMeta):
     @classmethod
     def _check_categories(cls, parties):
         Category = Pool().get('party.category')
+
+        if not Transaction().context.get('check_categories', True):
+            return
 
         required_categories = Category.search([
                 ('required', '=', True),
