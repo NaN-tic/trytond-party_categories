@@ -3,9 +3,7 @@
 import unittest
 import trytond.tests.test_tryton
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
-from trytond.transaction import Transaction
 from trytond.pool import Pool
-from trytond.model.exceptions import SQLConstraintError
 from trytond.exceptions import UserError
 
 
