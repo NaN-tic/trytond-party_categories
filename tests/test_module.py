@@ -1,14 +1,14 @@
-# The COPYRIGHT file at the top level of this repository contains the full
-# copyright notices and license terms.
-import unittest
-import trytond.tests.test_tryton
+
+# This file is part of Tryton.  The COPYRIGHT file at the top level of
+# this repository contains the full copyright notices and license terms.
+
 from trytond.tests.test_tryton import ModuleTestCase, with_transaction
 from trytond.pool import Pool
 from trytond.exceptions import UserError
 
 
-class TestPartyCategoriesCase(ModuleTestCase):
-    'Test Party Categories module'
+class PartyCategoriesTestCase(ModuleTestCase):
+    'Test PartyCategories module'
     module = 'party_categories'
 
     @with_transaction()
@@ -56,8 +56,5 @@ class TestPartyCategoriesCase(ModuleTestCase):
         party.save()
         self.assertTrue(party.id)
 
-def suite():
-    suite = trytond.tests.test_tryton.suite()
-    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(
-            TestPartyCategoriesCase))
-    return suite
+
+del ModuleTestCase
