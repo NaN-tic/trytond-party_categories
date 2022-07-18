@@ -69,11 +69,8 @@ class Party(metaclass=PoolMeta):
                     # Check if we have more than one child category for each
                     # unique category
                     childs = Category.search([
-                        ('parent', 'child_of', unique_category_id),
-                        ('id', '!=', unique_category_id)])
-                    childs_in_party = [u.id for u in filter(
-                        lambda a: a in childs, party.categories)]
-                    if len(childs_in_party) > 1:
+                        ('parent', 'child_of', unique_category_id)])
+                    if len(set(childs) & set(party.categories)) > 1:
                         raise UserError(
                             gettext('party_categories.repeated_unique',
                             party=party.rec_name))
