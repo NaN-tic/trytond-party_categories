@@ -65,17 +65,15 @@ class Party(metaclass=PoolMeta):
                         categories=', '.join(cat_required[:3])))
 
             if unique_categories_ids:
-                childs = Category.search([
-                    ('parent', 'child_of', unique_categories_ids),
-                    ('id', 'not in', unique_categories_ids)])
-
-                unique_values = filter(lambda a: a in childs, party.categories)
-                # Get all parents to compare them
-                parents = [u.parent.id for u in unique_values]
-
-                if len(parents) != len(set(parents)):
-                    raise UserError(gettext('party_categories.repeated_unique',
-                        party=party.rec_name))
+                for unique_category_id in unique_categories_ids:
+                    # Check if we have more than one child category for each
+                    # unique category
+                    childs = Category.search([
+                        ('parent', 'child_of', unique_category_id)])
+                    if len(set(childs) & set(party.categories)) > 1:
+                        raise UserError(
+                            gettext('party_categories.repeated_unique',
+                            party=party.rec_name))
 
     @staticmethod
     def check_if_exisit(list1, list2):
