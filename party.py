@@ -24,6 +24,11 @@ class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
 
     @classmethod
+    def __setup__(cls):
+        super().__setup__()
+        cls.categories.domain += [('kind', '!=', 'view')]
+
+    @classmethod
     def validate(cls, vlist):
         super(Party, cls).validate(vlist)
         cls._check_categories(vlist)
