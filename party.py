@@ -98,11 +98,11 @@ class PartyCategory(metaclass=PoolMeta):
     unique = fields.Boolean('Unique',
         states={
             'invisible': Eval('kind') != 'view',
-        }, depends=['kind'])
+        })
     required = fields.Boolean('Required',
         states={
             'invisible': Eval('kind') != 'view',
-        }, depends=['kind'])
+        })
 
     @staticmethod
     def default_kind():
