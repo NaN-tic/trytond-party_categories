@@ -62,8 +62,8 @@ class Party(metaclass=PoolMeta):
         for party in parties:
             if childs_required:
                 categories_ids = [c.id for c in party.categories]
-                exisits = cls.check_if_exisit(childs_required, categories_ids)
-                if not exisits:
+                exists = cls.check_if_exist(childs_required, categories_ids)
+                if not exists:
                     cat_required = [c.name for c in required_categories]
                     raise UserError(gettext('party_categories.missing_categories',
                         party=party.rec_name,
@@ -81,7 +81,7 @@ class Party(metaclass=PoolMeta):
                             party=party.rec_name))
 
     @staticmethod
-    def check_if_exisit(list1, list2):
+    def check_if_exist(list1, list2):
         for party in list2:
             for required_parent in list1:
                 if party in required_parent:
