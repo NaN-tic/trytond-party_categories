@@ -36,7 +36,7 @@ class TestPartyCategoriesCase(ModuleTestCase):
         party = Party()
         party.name = 'Template'
         template.categories = [category]
-        self.assertRaises(Exception, Party.create, [party._save_values])
+        self.assertRaises(Exception, Party.create, [party._save_values()])
         party.categories = [category, cat1, cat1a]
         party.save()
         self.assertEqual(len(party.categories), 3)

@@ -32,7 +32,7 @@ class PartyCategoriesTestCase(ModuleTestCase):
         party.categories = [category]
 
         self.assertRaises(UserError, Party.create,
-            [party._save_values])
+            [party._save_values()])
 
     @with_transaction(context={'check_categories': False})
     def test_not_check_categories(self):
