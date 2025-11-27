@@ -4,7 +4,7 @@ from trytond.model import fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.i18n import gettext
-from trytond.exceptions import UserError
+from trytond.model.exceptions import ValidationError
 from trytond.transaction import Transaction
 
 __all__ = ['Party', 'PartyCategory']
@@ -65,7 +65,7 @@ class Party(metaclass=PoolMeta):
                 exists = cls.check_if_exist(childs_required, categories_ids)
                 if not exists:
                     cat_required = [c.name for c in required_categories]
-                    raise UserError(gettext('party_categories.missing_categories',
+                    raise ValidationError(gettext('party_categories.missing_categories',
                         party=party.rec_name,
                         categories=', '.join(cat_required[:3])))
 
@@ -76,7 +76,7 @@ class Party(metaclass=PoolMeta):
                     childs = Category.search([
                         ('parent', 'child_of', unique_category_id)])
                     if len(set(childs) & set(party.categories)) > 1:
-                        raise UserError(
+                        raise ValidationError(
                             gettext('party_categories.repeated_unique',
                             party=party.rec_name))
 
