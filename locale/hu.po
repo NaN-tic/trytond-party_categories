@@ -1,0 +1,40 @@
+#
+msgid ""
+msgstr ""
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "field:party.category,kind:"
+msgid "Kind"
+msgstr "Érvényesség"
+
+msgctxt "field:party.category,required:"
+msgid "Required"
+msgstr "Kötelezõ"
+
+msgctxt "field:party.category,unique:"
+msgid "Unique"
+msgstr "Egyedi"
+
+#, python-format
+msgctxt "model:ir.message,text:missing_categories"
+msgid ""
+"The party \"%(party)s\" is missing some required categories: %(categories)s"
+msgstr ""
+"A(z) „%(party)s” partnernél hiányoznak kötelező kategóriák: %(categories)s"
+
+#, python-format
+msgctxt "model:ir.message,text:repeated_unique"
+msgid "The party \"%(party)s\" has repeated categories marked as unique"
+msgstr "A(z) „%(party)s” partnernél ismétlődnek egyedinek jelölt kategóriák"
+
+msgctxt "selection:party.category,kind:"
+msgid "Other"
+msgstr "egyéb"
+
+msgctxt "selection:party.category,kind:"
+msgid "View"
+msgstr "Nézet"
